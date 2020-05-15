@@ -41,24 +41,30 @@ class ChecksumVerify(tk.Frame):
       def check_md5():
         # Generates MD5 hash and compares against given MD5 hash
         file_to_check = self.file_entry.get()
-        md5_hash = self.md5_entry.get()
-        output = subprocess.Popen(['fciv.exe','-md5', file_to_check], stdout=subprocess.PIPE).communicate()[0].split()
-        output_sum = output[9].decode('utf-8')
-        if output_sum == md5_hash:
-          mb.showinfo("Results", "The MD5 checksums match!")
+        if file_to_check == '':
+          mb.showinfo("Results", "No MD5 checksum entered.")
         else:
-          mb.showinfo("Results", "WARNING: the MD5 checksums do NOT match.")
+          md5_hash = self.md5_entry.get()
+          output = subprocess.Popen(['fciv.exe','-md5', file_to_check], stdout=subprocess.PIPE).communicate()[0].split()
+          output_sum = output[9].decode('utf-8')
+          if output_sum == md5_hash:
+            mb.showinfo("Results", "The MD5 checksums match!")
+          else:
+            mb.showinfo("Results", "WARNING: the MD5 checksums do NOT match.")
 
       def check_sha1():
         # Generates SHA1 hash and compares against given SHA1 hash
         file_to_check = self.file_entry.get()
-        sha1_hash = self.sha1_entry.get()
-        output = subprocess.Popen(['fciv.exe','-sha1', file_to_check], stdout=subprocess.PIPE).communicate()[0].split()
-        output_sum = output[9].decode('utf-8')
-        if output_sum == sha1_hash:
-          mb.showinfo("Results", "The SHA1 checksums match!")
+        if file_to_check == '':
+          mb.showinfo("Results", "No SHA1 checksum entered.")
         else:
-          mb.showinfo("Results", "WARNING: the SHA1 checksums do NOT match.")
+          sha1_hash = self.sha1_entry.get()
+          output = subprocess.Popen(['fciv.exe','-sha1', file_to_check], stdout=subprocess.PIPE).communicate()[0].split()
+          output_sum = output[9].decode('utf-8')
+          if output_sum == sha1_hash:
+            mb.showinfo("Results", "The SHA1 checksums match!")
+          else:
+            mb.showinfo("Results", "WARNING: the SHA1 checksums do NOT match.")
 
 root = tk.Tk()
 app = ChecksumVerify(root)
