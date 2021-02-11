@@ -1,6 +1,8 @@
 # ChecksumVerify
 Basic MD5/SHA1 comparison application
 
+**Microsoft has removed the File Checksum Integrity Verifier application from their website, so this is no longer functional - I will be replacing it with an alternative application**
+
 ## Table of Contents
 1. About
 2. Getting Started
